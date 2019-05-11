@@ -1,14 +1,13 @@
 import tensorflow as tf
 class CalcModel:
     def __init__(self):
-        self._w1 = tf.placeholder(tf.float32, name='w1')
-        self._w2 = tf.placeholder(tf.float32, name='w2')
-        self._feed_dict = {'w1': 8.0, 'w2':2.0}
+        pass
 
-    def create_add_model(self):
-        w1 = self._w1
-        w2 = self._w2
-        feed_dict = self._feed_dict
+    @staticmethod
+    def create_add_model():
+        w1 = tf.placeholder(tf.float32, name='w1')
+        w2 = tf.placeholder(tf.float32, name='w2')
+        feed_dict = {'w1': 8.0, 'w2':2.0}
 
         r = tf.add(w1, w2, name='op_add')
         sess = tf.Session()
