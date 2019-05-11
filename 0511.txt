@@ -1,0 +1,107 @@
+강의 노트
+ pip install flask
+ app 생성
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'hello world!'
+
+if __name__ == '__main__':
+   // app.debug = True
+    app.run()
+
+
+http://127.0.0.1:5000/ 클릭 검색창 설정 -->f12(elements)
+pyqt5 설치
+
+
+----------
+젯브레인 학생 라이센스 설치
+
+Professional
+Community
+
+=========================
+directory html관려된것
+파이썬 언어는 package
+
+directory----
+templates--고정 이름
+
+
+=====code chage===
+from flask import Flask,render_template
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return render_template('index.html')
+
+if __name__ == '__main__':
+        app.run()
+
+------------------
+directory
+static-이름 고정
+
+만약에레 style.css있으면
+style.css를 코드로 저장함
+------------
+app--router
+
+
+
+-------------------
+동작 순서
+INDEX---MODEL--INDEX
+MODE --INT로 실행
+
+index로그인 --파이썬에 전달
+----------------
+<p>결과 : {{result}}</p> 이것은 파이썬에 연결됨
+
+<form>이동하면서 결과를 갖고 이동됨 
+<a>이동만함
+
+
+----
+html--app---controller 실행 방향
+
+먼저 cotnroller로 model를 불러와서 실행 할것을 패턴으로 임무적으로 작성함
+=========================
+
+[머신러닝] save and restore Tensorflow models (출처 - 영문블로그)	
+(사람이 한번 클릭 할때마다 정보를 기억하고 누적한다 그러면 정확도가 높아진다)
+================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+templates--뷰
