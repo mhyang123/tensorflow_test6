@@ -5,6 +5,8 @@ from blood.model import BloodModel
 from gradient_descent.controller import  GradientDescentController
 from keras import backend as K
 from cabbage.controller import CabbageController
+from kospi.controller import KospiController
+from stock_ticker.controller import StockTickerController
 import re
 
 app = Flask(__name__)
@@ -101,6 +103,21 @@ def cabbage():
     render_params['result'] = result
     return render_template("cabbage.html", **render_params)
 
+@app.route('/kospi',methods=['GET','POST'])
+def kospi():
+    ctrl = KospiController()
+    kospi = ctrl.service()
+    render_params = {}
+    render_params['result'] = kospi
+    return render_template('kospi.html', **render_params)
+
+@app.route('/stock_ticker',methods=['GET','POST'])
+def stock_ticker():
+    ctrl=StockTickerController()
+    price=ctrl.service()
+    render_params = {}
+    render_params['result'] = price
+    return render_template("stock_ticker.html", **render_params)
 
 if __name__ == '__main__':
     app.run()

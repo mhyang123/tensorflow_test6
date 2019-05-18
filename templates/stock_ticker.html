@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>삼성전자 : 005930</h3>
+<h4>https://finance.naver.com/item/main.nhn?code=005930</h4>
+<form action="/stock_ticker">
+    종목 코드 :<input type="text" name="tiker">
+    <input type="submit" value="전송">
+</form>
+{%  if result %}
+    <p>결과 : {{result}}</p>
+    {% endif %}
+</body>
+</html>
