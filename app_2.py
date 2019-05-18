@@ -1,17 +1,16 @@
 from flask import Flask, render_template, request, jsonify
 from member.controller import MemberController
 from ai_calc.controller import CalcController
-from blood.model import BloodModel
-from gradient_descent.controller import  GradientDescentController
-from keras import backend as K
-from cabbage.controller import CabbageController
+from blood.model import BloodModel #CONTROLL를 호출 해야 한다
+from gradient_descent.controller import GradientDescentController
+from iris.cotroller import IrisController
 import re
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    return render_template('home.html')#index---변경됨home
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -44,11 +43,11 @@ def ui_calc():
         if op == '+':
             result = int(nums[0]) + int(nums[1])
         elif op == '-':
-            result = int(nums[0]) + int(nums[1])
+            result = int(nums[0]) - int(nums[1])
         elif op == '*':
-            result = int(nums[0]) + int(nums[1])
+            result = int(nums[0]) * int(nums[1])
         elif op == '/':
-            result = int(nums[0]) + int(nums[1])
+            result = int(nums[0]) / int(nums[1])
 
     return jsonify(result= result)
 
@@ -63,7 +62,7 @@ def ai_calc():
     opcode = request.form['opcode']
     print('계산기에 들어온 num1 = {}, num2 = {}, opcode = {}'.format(num1, num2, opcode))
     c = CalcController(num1, num2, opcode)
-    result = c.calc()
+    result = c.calc
     render_params = {}
     render_params['result'] = result
     return render_template('ai_calc.html', **render_params)
@@ -74,32 +73,25 @@ def blood():
     weight = request.form['weight']
     age = request.form['age']
     print('몸무게 : {}, 나이 : {}'.format(weight,  age))
-    model = BloodModel('blood/data/data.txt')
-    raw_data = model.create_raw_data()
-    render_params = {}
-    value = model.create_model(raw_data,weight,age)
-    render_params['result'] = value
-    return render_template('blood.html', **render_params)
+    model=BloodModel("blood/data/data.txt")
+    raw_data=model.create_raw_data()
+    render_params={}
+    value=model.create_model(raw_data,weight,age)
+    render_params['result']  =value  #render_params==값;다른건 hmtl과 관련됨
+    return render_template('blood.html',**render_params)
 
 @app.route('/gradient_descent', methods=['GET','POST'])
 def gradient_descent():
-    ctrl = GradientDescentController()
-    name = ctrl.service_model()
-    return render_template('gradient_descent.html',name = name)
+    ctrl=GradientDescentController()
+    name=ctrl.service_model()
+    return render_template("gradient_descent.html",name=name) #값이 한개 일때 ,여러개일대**render_params
+
 
 @app.route('/iris',methods=['GET','POST'])
 def iris():
     ctrl=IrisController()
     result=ctrl.service_model()
     return render_template("iris.html", result=result)
-
-@app.route('/cabbage',methods=['GET','POST'])
-def cabbage():
-    ctrl=CabbageController()
-    result=ctrl.service_model()
-    render_params = {}
-    render_params['result'] = result
-    return render_template("cabbage.html", **render_params)
 
 
 if __name__ == '__main__':
